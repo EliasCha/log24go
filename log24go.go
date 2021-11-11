@@ -68,6 +68,7 @@ func (log *Log24go) WriterFormatter(level string, file string, line int, tn time
 	// Set time format
 	var hour, minute, second, nanosecond int
 	var err error
+
 	if tn.Hour() < 10 {
 		hour, err = strconv.Atoi(fmt.Sprintf("0%d", tn.Hour()))
 		if err != nil {
@@ -76,6 +77,7 @@ func (log *Log24go) WriterFormatter(level string, file string, line int, tn time
 	} else {
 		hour = tn.Hour()
 	}
+
 	if tn.Minute() < 10 {
 		minute, err = strconv.Atoi(fmt.Sprintf("0%d", tn.Minute()))
 		if err != nil {
@@ -84,7 +86,7 @@ func (log *Log24go) WriterFormatter(level string, file string, line int, tn time
 	} else {
 		minute = tn.Minute()
 	}
-	second = tn.Second()
+
 	if tn.Second() < 10 {
 		second, err = strconv.Atoi(fmt.Sprintf("0%d", tn.Second()))
 		if err != nil {
@@ -93,6 +95,7 @@ func (log *Log24go) WriterFormatter(level string, file string, line int, tn time
 	} else {
 		second = tn.Second()
 	}
+
 	nanosecond = tn.Nanosecond()
 	*buf = append(*buf, fmt.Sprintf("%d:%d:%d.%d", hour, minute, second, nanosecond)...)
 	*buf = append(*buf, " "...)
